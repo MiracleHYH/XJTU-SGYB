@@ -1,6 +1,8 @@
 # XJTU-SGYB
+
 XJTU四个一百自动化脚本
-安装[GreasyFork](https://greasyfork.org/zh-CN/scripts/466830-xjtu-%E5%9B%9B%E4%B8%AA%E4%B8%80%E7%99%BE%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC-%E4%BB%85%E5%90%AB%E4%B9%A6%E7%B1%8D%E5%92%8C%E6%95%99%E5%B8%88%E6%A8%A1%E5%9D%97)
+
+安装地址[GreasyFork](https://greasyfork.org/zh-CN/scripts/466830-xjtu-%E5%9B%9B%E4%B8%AA%E4%B8%80%E7%99%BE%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC-%E4%BB%85%E5%90%AB%E4%B9%A6%E7%B1%8D%E5%92%8C%E6%95%99%E5%B8%88%E6%A8%A1%E5%9D%97)
 
 
 ## 使用方法
