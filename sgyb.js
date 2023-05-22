@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         XJTU 四个一百自动化脚本（仅含书籍和教师模块）
-// @namespace    https://github.com/MiracleHYH/XJTU-SGYB
-// @version      0.1
+// @namespace    http://tampermonkey.net/
+// @version      1.0
 // @description  调用ChatGPT生成读后感批量补录XJTU 100本经典阅读,批量确认教师
 // @author       Miracle24
 // @match        http://nsa.xjtu.edu.cn/sgyb/ybbsplpj*
 // @match        http://nsa.xjtu.edu.cn/sgyb/ybmjsplpj*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=xjtu.edu.cn
 // @grant        none
+// @license      MIT
 // ==/UserScript==
 
 
@@ -57,8 +58,12 @@ async function query(title, apikey){
         </style>
         <div class="control-panel">
         <div>
-            <span>API Key</span>
+            <span>API Key（需要科学上网）</span>
             <input type="text" id="apikey">
+        </div>
+        <div>
+            直接使用书名作为评价（无需API Key）
+            <input type="checkbox" id="switch">
         </div>
         <button id="fillButton">批量补录</button>
         <span id="finish">已完成：0</span>
@@ -68,7 +73,8 @@ async function query(title, apikey){
         document.body.insertBefore(controlPanel, null);
         document.getElementById("fillButton").onclick = async function(){
             const apikey = document.getElementById("apikey").value;
-            if(apikey === ""){
+            const useBookName = document.getElementById("switch").checked;
+            if(apikey === "" && useBookName == false){
                 alert("api key 不能为空");
                 return;
             }
@@ -77,8 +83,12 @@ async function query(title, apikey){
                 if (bookBox == undefined) break;
                 var bookTitle = bookBox.getElementsByClassName("tit")[0].getElementsByClassName("el-form-item__content")[0].getElementsByTagName("span")[0].textContent;
                 var bookComment = bookBox.getElementsByTagName("textarea")[0];
-                var comment = await query(bookTitle, apikey);
-                bookComment.value = comment;
+                if (useBookName == true){
+                    bookComment.value = bookTitle;
+                }
+                else{
+                    bookComment.value = await query(bookTitle, apikey);
+                }
                 document.getElementById("finish").textContent = `已完成：${i+1}`;
             };
         };
